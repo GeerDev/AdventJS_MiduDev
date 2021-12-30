@@ -92,3 +92,78 @@ function decodeNumbers(symbols) {
 // console.log(decodeNumbers('...')) // 3
 // console.log(decodeNumbers('.,')) // 4 (5 - 1)
 // console.log(decodeNumbers(';.W')) // NaN
+
+// Adviento 5
+function daysToXmas(date) {
+  const referencia = new Date('Dec 25, 2021')
+  const dia = 1000 * 60 * 60 * 24
+  return Math.ceil((referencia - date)/dia)
+}
+
+const date1 = new Date('Dec 1, 2021')
+console.log(daysToXmas(date1)) // 24
+const date2 = new Date('Dec 24, 2021 00:00:01')
+console.log(daysToXmas(date2)) // 1
+const date3 = new Date('Dec 24, 2021 23:59:59')
+console.log(daysToXmas(date3)) // 1
+const date4 = new Date("December 20, 2021 03:24:00")
+console.log(daysToXmas(date4)) // 5
+
+// Adviento 13
+function wrapGifts(gifts) {
+  const tamaño = gifts[0].length
+  let añadir = ""
+  for (let i = 0; i < tamaño + 2; i++){
+    añadir += "*"
+  }
+  const regalitos = gifts.map(e => `*${e}*`)
+  regalitos.unshift(añadir)
+  regalitos.push(añadir)
+  return regalitos
+}
+
+console.log(wrapGifts(["📷", "⚽️"]))
+/* Resultado:
+[ '****',
+  '*📷*',
+  '*⚽️*',
+  '****'
+]
+*/
+
+console.log(wrapGifts(["📷"]))
+/* Resultado:
+[ '****',
+  '*📷*',
+  '****'
+]
+*/
+
+// Adviento 2
+const carta = 'bici coche balón _playstation bici coche peluche'
+
+function listGifts(letter) {
+  const trozos = letter.trim().split(' ')
+  const filtrado = trozos.filter(e => !e.includes('_'))
+  const acumulacion = filtrado.reduce((acc, ele) => {
+    acc[ele] = (acc[ele] || 0) + 1
+    // console.log(acc)
+    return acc
+  }, {})
+  return acumulacion
+}
+
+const regalos = listGifts(carta)
+
+console.log(regalos)
+/*
+{
+  bici: 2,
+  coche: 2,
+  balón: 1,
+  peluche: 1
+}
+*/
+
+// Adviento 3
+
